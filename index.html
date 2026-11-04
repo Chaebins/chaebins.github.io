@@ -53,6 +53,7 @@ a:focus-visible, summary:focus-visible, button:focus-visible { outline: 2px soli
 
 /* Identity column */
 .id { position: sticky; top: calc(2.5rem + env(safe-area-inset-top, 0px)); align-self: start; display: grid; gap: 1.25rem; }
+.portrait { display: block; width: 9rem; height: auto; max-width: 100%; }
 .eyebrow {
   font-family: var(--font-mono); font-size: var(--step--1); color: var(--accent);
   letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 0.5rem;
@@ -73,6 +74,8 @@ a:focus-visible, summary:focus-visible, button:focus-visible { outline: 2px soli
 }
 .status strong { display: block; font-weight: 600; color: var(--accent); font-size: var(--step--1); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.15rem; }
 .navlinks { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; font-size: 0.9rem; }
+
+@media (max-height: 950px) { .id { position: static; } }
 
 /* Record column */
 main { min-width: 0; display: grid; gap: 3.25rem; }
@@ -188,6 +191,7 @@ footer { font-size: var(--step--1); color: var(--muted); font-family: var(--font
 <body>
 <div class="page">
   <aside class="id">
+    <img class="portrait" src="photo.jpg" alt="Portrait of Chaebin Jeong" width="480" height="625">
     <div class="eyebrow">AI · Data Science · Seoul</div>
     <h1>Chaebin Jeong<span class="ko" lang="ko">정채빈</span></h1>
     <p class="role">M.S. student in Artificial Intelligence and Data Science<br>Food and Nutrition AI Lab, Sejong University</p>
@@ -219,14 +223,14 @@ footer { font-size: var(--step--1); color: var(--muted); font-family: var(--font
   <main>
     <section id="about" aria-label="About">
       <p class="lede">I build the knowledge that language models <em>reason with</em>.</p>
-      <p>My work covers knowledge-graph construction and KG-grounded LLM reasoning, LLM agents and their memory, benchmarks for evaluating LLMs, and time-series foundation models that work on sparse real-world demand. I am advised by Prof. Donghyeon Park and serve as student lab leader of the FNAI Lab.</p>
+      <p>My work covers knowledge-graph-based data generation (knowledge graph construction and LLM training data synthesis), LLM evaluation benchmarks, diagnosing and improving time-series foundation models, LLM agent memory, and food recommendation systems. I am advised by Prof. Donghyeon Park and serve as Lab Master of the FNAI Lab.</p>
       <ul class="interests" aria-label="Research interests">
         <li>Knowledge graph construction</li>
-        <li>KG-grounded LLM reasoning</li>
-        <li>LLM agents &amp; memory</li>
-        <li>LLM evaluation &amp; benchmarks</li>
+        <li>LLM training data synthesis</li>
+        <li>LLM evaluation benchmarks</li>
         <li>Time-series foundation models</li>
-        <li>Food knowledge graphs &amp; recommendation</li>
+        <li>LLM agent memory</li>
+        <li>Food recommendation</li>
       </ul>
     </section>
 
@@ -235,19 +239,19 @@ footer { font-size: var(--step--1); color: var(--muted); font-family: var(--font
       <ul class="now">
         <li>
           <span class="pill">Building</span>
-          <div><b>Substitution-aware food knowledge graph and MoE-based on-device recommendation agent</b> <span class="note">· co-first author, paper in preparation</span></div>
+          <div><b>Substitution-aware food knowledge graph and MoE-based on-device recommendation agent</b> <span class="note">· co-first author, in preparation. Generating the data that adds dietary restriction, substitute ingredient, and health score relations to a recipe knowledge graph.</span></div>
         </li>
         <li>
           <span class="pill">In review</span>
-          <div><b>Learning the Rate but Not the Days</b> <span class="note">· first author, Knowledge-Based Systems</span></div>
+          <div><b>Learning the Rate but Not the Days</b> <span class="note">· first author, Knowledge-Based Systems (Elsevier)</span></div>
         </li>
         <li>
           <span class="pill">In review</span>
-          <div><b>KEEPER</b> <span class="note">· second author, under review</span></div>
+          <div><b>KEEPER</b> <span class="note">· second author</span></div>
         </li>
         <li>
           <span class="pill">Leading</span>
-          <div><b>Student Lab Leader, FNAI Lab</b> <span class="note">· coordinating lab research and student members since Jun 2026</span></div>
+          <div><b>Lab Master, FNAI Lab</b> <span class="note">· coordinating lab research and student members since Jun 2026</span></div>
         </li>
       </ul>
     </section>
@@ -259,13 +263,13 @@ footer { font-size: var(--step--1); color: var(--muted); font-family: var(--font
       </div>
 
       <div class="group">
-        <h3>Accepted</h3>
+        <h3>Published</h3>
         <details class="item">
           <summary>
             <span class="tag">C1</span>
             <div>
               <p class="item-title">FoodVitals: A Diagnostic Benchmark for LLMs on Nutritional Literacy, Nutrient–Health Relations, and Food Safety</p>
-              <div class="meta"><span class="venue">CIKM 2026, Resource Track</span><span>Second author, equal contribution</span></div>
+              <div class="meta"><span class="venue">CIKM 2026, Resource Track</span><span>Co-second author</span></div>
             </div>
             <span class="chev" aria-hidden="true"></span>
           </summary>
@@ -273,16 +277,15 @@ footer { font-size: var(--step--1); color: var(--muted); font-family: var(--font
             <div>
               <h4>Summary</h4>
               <ul>
-                <li>Public benchmark of 1,158 verified items grounded in USDA, EFSA and FSIS sources.</li>
-                <li>Each item is probed in four formats: multiple choice, yes/no, short answer and ranking.</li>
-                <li>Zero-shot evaluation of six LLMs shows that single-format probes overstate mastery. No model ranks four foods by a nutrient above 29% accuracy.</li>
+                <li>Benchmark of 1,158 food-knowledge items verified against USDA, EFSA, and FSIS sources.</li>
+                <li>The same knowledge is asked in four formats: multiple choice, yes/no, short answer, and ranking.</li>
+                <li>Evaluated six LLMs; on nutrient-content ranking, every model stays below 29% accuracy.</li>
               </ul>
             </div>
             <div class="mine">
               <h4>My part</h4>
               <ul>
-                <li>Co-built the benchmark items and their multi-format probes.</li>
-                <li>Ran the evaluation of six LLMs, up to Llama 3.3-70B, with vLLM.</li>
+                <li>Co-built the benchmark and evaluated six LLMs on it.</li>
               </ul>
             </div>
           </div>
@@ -301,15 +304,15 @@ footer { font-size: var(--step--1); color: var(--muted); font-family: var(--font
             <div>
               <h4>Summary</h4>
               <ul>
-                <li>Synthesizes contrastive training data grounded in a knowledge graph.</li>
-                <li>Applies slot-level preference optimization (SPA) to improve LLM reasoning.</li>
+                <li>Proposes contrastive training data synthesis based on knowledge graph paths.</li>
+                <li>Proposes slot-level preference alignment (SPA).</li>
               </ul>
               <p>Jinkyeong Choi, <b>Chaebin Jeong</b>, Donghyeon Park · <a href="https://aclanthology.org/2026.findings-emnlp.970/">Paper (ACL Anthology)</a></p>
             </div>
             <div class="mine">
               <h4>My part</h4>
               <ul>
-                <li>Contributed to the KG-grounded preference optimization.</li>
+                <li>Second author; contributed to the KG-grounded data synthesis and preference alignment.</li>
               </ul>
             </div>
           </div>
@@ -323,7 +326,7 @@ footer { font-size: var(--step--1); color: var(--muted); font-family: var(--font
             <span class="tag">U1</span>
             <div>
               <p class="item-title">Learning the Rate but Not the Days: Diagnosing and Repairing Time Series Foundation Models on Zero-Inflated E-Commerce Demand</p>
-              <div class="meta"><span class="venue">Knowledge-Based Systems</span><span class="first">First author</span></div>
+              <div class="meta"><span class="venue">Knowledge-Based Systems (Elsevier)</span><span class="first">First author</span></div>
             </div>
             <span class="chev" aria-hidden="true"></span>
           </summary>
@@ -357,7 +360,7 @@ footer { font-size: var(--step--1); color: var(--muted); font-family: var(--font
             <span class="tag">U2</span>
             <div>
               <p class="item-title">KEEPER: Learning Control-Sufficient Textual Memory for Long-Horizon LLM Agents</p>
-              <div class="meta"><span class="venue">Under review</span><span>Second author</span></div>
+              <div class="meta"><span>Second author</span></div>
             </div>
             <span class="chev" aria-hidden="true"></span>
           </summary>
@@ -365,10 +368,9 @@ footer { font-size: var(--step--1); color: var(--muted); font-family: var(--font
             <div>
               <h4>Summary</h4>
               <ul>
-                <li>Defines self-consistency bias: incorrect claims persist when an agent recursively rewrites its own memory.</li>
+                <li>Defines self-consistency bias: existing errors persist when an agent recursively updates its textual memory.</li>
                 <li>Compares four auxiliary training objectives with offline RL on ScienceWorld and ALFWorld (Llama-3.2-3B).</li>
-                <li>Reward-related prediction yields the highest task performance before and after offline RL.</li>
-              </ul>
+                              </ul>
             </div>
             <div class="mine">
               <h4>My part</h4>
@@ -387,7 +389,7 @@ footer { font-size: var(--step--1); color: var(--muted); font-family: var(--font
             <span class="tag">D1</span>
             <div>
               <p class="item-title">Mitigating Distribution Mismatch in Zero-Inflated Time Series Foundation Models: Mixture of Experts-Based Domain Adaptation and Log Transformation Strategies</p>
-              <div class="meta"><span class="venue">KCC 2026, poster</span><span class="first">First author</span></div>
+              <div class="meta"><span class="venue">KCC 2026</span><span class="first">First author</span></div>
             </div>
             <span class="chev" aria-hidden="true"></span>
           </summary>
@@ -411,7 +413,7 @@ footer { font-size: var(--step--1); color: var(--muted); font-family: var(--font
             <span class="chev" aria-hidden="true"></span>
           </summary>
           <div class="body">
-            <p>The paper from the Yanolja joint research project. See <a href="#projects">Projects</a> for my part.</p>
+            <p>A ReAct-based travel-itinerary generation agent, from the Yanolja joint research project.</p>
           </div>
         </details>
       </div>
@@ -427,30 +429,29 @@ footer { font-size: var(--step--1); color: var(--muted); font-family: var(--font
           <summary>
             <span class="tag">2026</span>
             <div>
-              <p class="item-title serif">AdaptEat: explainable cross-cuisine food recommendation</p>
+              <p class="item-title serif">AdaptEat: substitute food recommendation and explanations</p>
               <div class="meta"><span class="venue">KIRD 2026 Global R&amp;D Challenge</span><span>with New Uzbekistan University</span><span>Jun – Oct 2026</span></div>
             </div>
             <span class="chev" aria-hidden="true"></span>
           </summary>
           <div class="body">
             <div class="figs">
-              <div><b>33,001</b><span>KG nodes, 1,000 recipes</span></div>
-              <div><b>29.2%</b><span>same-category first dish (24.0% w/o KG)</span></div>
-              <div><b>96.5–97.3%</b><span>explanations fully verified</span></div>
+              <div><b>162,729</b><span>flavour edges generated, 56% of all KG edges</span></div>
+              <div><b>572</b><span>FlavorDB flavour descriptors</span></div>
+              <div><b>1,434</b><span>ingredients matched</span></div>
             </div>
             <div>
-              <h4>Team result</h4>
+              <h4>Project</h4>
               <ul>
-                <li>A unified Korea–Uzbekistan food knowledge graph (33,001 nodes, 289,036 edges) and a two-route recommender that suggests Korean alternatives to Uzbek dishes.</li>
+                <li>Recommends Korean alternatives to Uzbek dishes over a Korea–Uzbekistan food knowledge graph, and explains the reasoning behind each recommendation.</li>
               </ul>
             </div>
             <div class="mine">
               <h4>My part</h4>
               <ul>
-                <li>Built the flavour feature from FlavorDB profiles for all 1,000 dishes.</li>
-                <li>Built the KG route (PathSim over shared cooking-step paths), which surfaces candidates beyond the feature-based top 20 for 387 of 498 queries.</li>
-                <li>Fused the KG and feature routes with reciprocal rank fusion: top-3 main-ingredient match 21.4% vs. 4.6% at random.</li>
-                <li>Built the graph-grounded explanation module, its automatic checker and its HTML/CSS view in the public web demo; co-authored the team proposal.</li>
+                <li>Matched 1,434 ingredients with 572 FlavorDB flavour descriptors, generating 162,729 flavour edges (56% of all KG edges).</li>
+                <li>Implemented PathSim graph recommendation and its reciprocal rank fusion, improving Top-1 same-category results.</li>
+                <li>Built the graph-grounded explanation verification module and the recommendation reasoning view in HTML/CSS.</li>
               </ul>
             </div>
           </div>
@@ -469,10 +470,9 @@ footer { font-size: var(--step--1); color: var(--muted); font-family: var(--font
             <div class="mine">
               <h4>My part</h4>
               <ul>
-                <li>Built a ReAct travel-planning agent on the TravelPlanner framework: the LLM plans while plug-in tools (attraction, accommodation, restaurant and distance search, notebook, planner) look up facts, so new data or domains need no retraining.</li>
-                <li>Moved the tools to a Seoul dataset with district-level city indexing.</li>
-                <li>Diagnosed why a LoRA/RAFT-tuned Llama 3.1 planner hallucinated budgets and currencies (domain mismatch and overfitting to its fine-tuning data) and redesigned the roles: a stronger model handles reasoning and tool choice, and the planner uses only retrieved information.</li>
-                <li>Fixed agent loops on simple lookups and planner over-calls; co-authored the KICS 2026 paper.</li>
+                <li>Fine-tuned KONI-Llama3.1-8B on Reddit travel data with QLoRA and RAFT, and applied it as the planner of a ReAct travel-itinerary agent.</li>
+                <li>Traced budget and currency hallucinations to domain mismatch and overfitting in the training data.</li>
+                <li>Ported the agent to a Seoul dataset (district-level location column, citySet).</li>
               </ul>
             </div>
           </div>
@@ -488,13 +488,13 @@ footer { font-size: var(--step--1); color: var(--muted); font-family: var(--font
       </div>
       <div class="entry">
         <div class="entry-head"><h3>B.S. in Electronics and Information Engineering</h3><span class="when">Mar 2020 – Aug 2025</span></div>
-        <div class="sub">Sejong University · ABEEK-accredited (Washington Accord)</div>
+        <div class="sub">Sejong University · ABEEK-accredited program</div>
       </div>
       <div class="entry">
         <div class="entry-head"><h3>Honors</h3></div>
         <ul>
-          <li>Student Lab Leader, FNAI Lab (Jun 2026 – present)</li>
-          <li>Excellence Award, Multicultural Research Team Best Practice Contest (Dec 2025)</li>
+          <li>Lab Master, FNAI Lab (Jun 2026 – present)</li>
+          <li>Excellence Award, Multicultural Research Team Best Practice Contest, KIRD (Dec 2025)</li>
         </ul>
       </div>
     </section>
@@ -502,14 +502,14 @@ footer { font-size: var(--step--1); color: var(--muted); font-family: var(--font
     <section id="skills">
       <div class="section-head"><h2>Skills</h2></div>
       <dl class="skills">
-        <dt>Programming</dt><dd>Python, PyTorch (advanced); SQL, C++, HTML/CSS</dd>
-        <dt>LLM</dt><dd>Hugging Face Transformers, vLLM; evaluation and benchmark design; ReAct agents and tool use; preference optimization</dd>
-        <dt>Forecasting</dt><dd>Chronos, Moirai, TimesFM; intermittent demand (SBA); probabilistic forecasting (CRPS); MoE fine-tuning</dd>
+        <dt>Programming</dt><dd>Python, PyTorch (primary); SQL, C++, HTML/CSS</dd>
+        <dt>Frameworks</dt><dd>Hugging Face Transformers, Git, LaTeX</dd>
+        <dt>Research</dt><dd>Knowledge graph data generation, LLM evaluation benchmark design, LLM agents (ReAct, tool use), time-series foundation models (Chronos, Moirai, TimesFM), MoE fine-tuning, knowledge-graph-based recommendation</dd>
         <dt>Languages</dt><dd>Korean (native), English (professional working proficiency)</dd>
       </dl>
     </section>
 
-    <footer>Last updated October 2026</footer>
+    <footer>Last updated November 2026</footer>
   </main>
 </div>
 
